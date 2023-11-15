@@ -12,6 +12,6 @@ class Artist extends Model
     protected $fillable = ['name','description', 'age','style'];
     public function concerts()
     {
-        return $this->hasMany(ConcertP::class, 'artists');
+        return $this->hasMany(Concert::class, 'artists');
     }
 }

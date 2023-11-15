@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Artist;
-use App\Models\ConcertP;
+use App\Models\Concert;
 use Illuminate\Http\Request;
 
 
@@ -13,9 +13,9 @@ class ConcertController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Database\Eloquent\Collection
     {
-        $concerts = ConcertP::all();
+        $concerts = Concert::all();
         return $concerts ;
     }
 
@@ -24,7 +24,7 @@ class ConcertController extends Controller
      */
     public function store(Request $request)
     {
-        $concert = new ConcertP();
+        $concert = new Concert();
         $concert->place = $request->place;
         $concert->date = $request->date;
         $concert->artist = $request->artist;
@@ -36,7 +36,7 @@ class ConcertController extends Controller
      */
     public function show(string $id)
     {
-        $concert = ConcertP::find($id);
+        $concert = Concert::find($id);
         return $concert;
     }
 
@@ -45,7 +45,7 @@ class ConcertController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $concert = ConcertP::findOrFail($request->$id);
+        $concert = Concert::findOrFail($request->$id);
         $concert->place = $request->place;
         $concert->date = $request->date;
         $concert->artist = $request->artist;
@@ -58,7 +58,7 @@ class ConcertController extends Controller
      */
     public function destroy(string $id)
     {
-        $concert=ConcertP::destroy($id);
+        $concert=Concert::destroy($id);
         return $concert;
     }
 }
